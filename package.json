@@ -1,0 +1,9 @@
+{
+  "name": "gnome-shelly-energy",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "make check",
+    "build": "make pack"
+  }
+}

@@ -1,0 +1,19 @@
+.shelly-reading { font-feature-settings: "tnum"; }
+.shelly-title { font-weight: bold; }
+.shelly-detail { font-size: 0.85em; color: #aaa; }
+.shelly-error { max-width: 340px; font-size: 0.9em; }
+.shelly-offline .shelly-reading { color: #aaa; }
+.shelly-reading { color: #1dacd6; }
+.shelly-high-reading,
+.shelly-high-power .shelly-reading,
+.shelly-high-power .system-status-icon { color: #d61d1d; }
+.shelly-sparkline { width: 64px; height: 22px; }
+.shelly-chart { width: 340px; spacing: 5px; }
+.shelly-chart-header { spacing: 5px; }
+.shelly-chart-range { padding: 4px 9px; border-radius: 6px; color: #ccc; }
+.shelly-chart-range:hover,
+.shelly-chart-range:focus { background-color: rgba(29, 172, 214, 0.16); }
+.shelly-chart-range:checked { background-color: #1dacd6; color: #0f0f0f; }
+.shelly-chart-canvas { width: 340px; height: 130px; }
+.shelly-chart-axis { font-size: 0.8em; color: #aaa; }
+.shelly-chart-summary { font-size: 0.9em; }

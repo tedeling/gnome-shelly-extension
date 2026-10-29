@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <schema id="org.gnome.shell.extensions.shelly-energy" path="/org/gnome/shell/extensions/shelly-energy/">
+    <key name="device-address" type="s">
+      <default>'192.168.30.91'</default>
+      <summary>Shelly IP address or hostname</summary>
+    </key>
+    <key name="refresh-interval" type="i">
+      <range min="1" max="300"/>
+      <default>1</default>
+      <summary>Seconds between updates</summary>
+    </key>
+    <key name="credentials-revision" type="u">
+      <default>0</default>
+      <summary>Signals that the keyring password has changed</summary>
+    </key>
+  </schema>
+</schemalist>
