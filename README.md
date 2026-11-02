@@ -24,7 +24,7 @@ No data is recorded while GNOME is logged out, the computer is asleep, or the ex
 
 ## Install
 
-Requires GNOME Shell 45–50, GJS, libsoup 3, libadwaita, and libsecret introspection bindings. Ubuntu’s GNOME desktop normally includes these; if needed:
+Requires GNOME Shell 45–51, GJS, libsoup 3, libadwaita, and libsecret introspection bindings. Ubuntu’s GNOME desktop normally includes these; if needed:
 
 ```sh
 sudo apt install gnome-shell gjs gir1.2-soup-3.0 gir1.2-adw-1 gir1.2-secret-1 libglib2.0-bin
@@ -56,6 +56,18 @@ const m = Main.extensionManager; const u = 'shelly-energy@local'; if (!m.lookup(
 ```
 
 Press Escape to close Looking Glass. This uses the extension manager APIs in the installed GNOME 50 Shell source. It registers a fresh installation; it does not reload changed JavaScript for a version already imported into the running Shell.
+
+### Restoring the extension after a GNOME upgrade
+
+GNOME disables extensions whose metadata does not list its new major version. Install the latest build with `make install`, then enable it with `gnome-extensions enable shelly-energy@local`. Version 5 adds GNOME 51 compatibility and replaces the chart layout property removed in that release, while retaining compatibility with older supported versions.
+
+If the extension was rejected as out of date and has not been imported in the current session, it can be loaded without logging out. After installing the updated build, open Looking Glass with **Alt+F2**, `lg`, and run:
+
+```js
+const m = Main.extensionManager; const u = 'shelly-energy@local'; const e = m.lookup(u); if (e?.isImported) throw new Error('Log out and back in to load changed code'); if (e) await m.reloadExtension(e); else await m.loadExtension(m.createExtensionObject(u, Gio.File.new_for_path(global.userdatadir + '/extensions/' + u), 2)); m.enableExtension(u)
+```
+
+Press Escape to close Looking Glass. If JavaScript was already imported, log out and back in to load the updated code. Device settings, keyring passwords, and saved history are retained by an ordinary reinstall.
 
 `make pack` creates `dist/shelly-energy@local.shell-extension.zip` for installation with `gnome-extensions install --force FILE`. Build/install require `make` and `gnome-extensions`; Node.js is only used for developer checks. No npm dependencies are needed.
 
@@ -101,7 +113,7 @@ curl --max-time 8 'http://192.168.30.91/rpc/Switch.GetStatus?id=0'
 curl --digest --user admin --max-time 8 'http://192.168.30.91/rpc/Switch.GetStatus?id=0'
 ```
 
-GNOME 45–50 are declared compatible. Automated runtime checks use GJS and libraries installed with GNOME 50; live Shell UI and device connection checks require a desktop session. To uninstall:
+GNOME 45–51 are declared compatible. Automated runtime checks have used GJS and libraries installed with GNOME 50 and 51; chart construction tests cover both the legacy and current layout APIs. Live Shell UI and device connection checks require a desktop session. To uninstall:
 
 ```sh
 gnome-extensions disable shelly-energy@local

@@ -3,7 +3,7 @@
   "name": "Shelly Energy",
   "url": "https://github.com/tedeling/gnome-shelly-extension",
   "description": "Live Shelly power in watts with a history chart. Teal readings turn red above 350 W; up to 24 hours of history are saved locally.",
-  "shell-version": ["45", "46", "47", "48", "49", "50"],
+  "shell-version": ["45", "46", "47", "48", "49", "50", "51"],
   "settings-schema": "org.gnome.shell.extensions.shelly-energy",
-  "version": 4
+  "version": 5
 }
